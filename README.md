@@ -1,6 +1,7 @@
-# bytebank
+# ByteBankApp
 
 A new Flutter project.
+By Alura
 
 ## Getting Started
 

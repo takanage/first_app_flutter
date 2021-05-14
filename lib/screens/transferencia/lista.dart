@@ -1,5 +1,7 @@
+import 'package:bytebank/config.dart';
 import 'package:bytebank/models/transferencia.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'formulario.dart';
 
 const _tituloAppBar = 'Transferências';
@@ -15,8 +17,15 @@ class ListaTransferencias extends StatefulWidget {
 
 // O Stateful precisa traballhar com um state
 class ListaTransferenciasState extends State<ListaTransferencias> {
+
+  ThemeChanger themeChanger;
+  bool systemIsDark;
+
   @override
   Widget build(BuildContext context) {
+    //
+    themeChanger = Provider.of<ThemeChanger>(context, listen: false);
+
     return Scaffold(
       appBar: AppBar(
         title: Text(_tituloAppBar),
@@ -39,6 +48,21 @@ class ListaTransferenciasState extends State<ListaTransferencias> {
           );
         },
       ),
+      drawer: Drawer(
+        child: ListView(
+          children: <Widget>[
+            ListTile(
+              title: Text('Dark Theme'),
+              trailing: Switch(
+                value: themeChanger.isDark(),
+                onChanged: (status) {
+                  themeChanger.setDarkStatus(status);
+                },
+              ),
+            )
+          ],
+        ),
+      )
     );
   }
 
